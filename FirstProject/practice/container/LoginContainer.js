@@ -17,8 +17,6 @@ class LoginContainer extends React.Component {
             username: '',
             pwd: '',
         }
-
-        Math.min
     }
 
     // componentWillUpdate(nextProps, nextState){
@@ -29,7 +27,7 @@ class LoginContainer extends React.Component {
 
 
     render() {
-        // const { login } = this.props;
+        const { login } = this.props;
         return (
             <View>
                 <Text>status:{this.props.status} </Text>
@@ -41,7 +39,7 @@ class LoginContainer extends React.Component {
                     (text) => this.setState({ pwd: text })
                 } />
 
-                <Button title="Login" onPress={() => loginInteractor.login(this.state.username, this.state.pwd)} />
+                <Button title="Login" onPress={() => login(this.state.username, this.state.pwd)} />
             </View>
         )
     }
@@ -62,7 +60,7 @@ export default connect(
         user: state.loginIn.user,
     }),
     (dispatch) => ({
-        login: (username, password) => dispatch(loginInteractor.login(username, password))
+        login: (name, pwd) => dispatch(loginInteractor.login(name, pwd))
     })
 
 )(LoginContainer)
