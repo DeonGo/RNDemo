@@ -17,6 +17,7 @@ export default class FlatListExample extends Component {
             error: false,
             errorInfo: "",
             dataArray: [],
+            count: 3,
         }
     }
 
@@ -36,8 +37,11 @@ export default class FlatListExample extends Component {
                     })
                     i++;
                 });
+                let size = Math.min(3, dataBlob.length)
                 this.setState({
                     //复制数据源
+                    
+                    count: size,
                     dataArray: dataBlob,
                     isLoading: false,
                 });
@@ -75,8 +79,7 @@ export default class FlatListExample extends Component {
         // } catch (error) {
         //     console.error(error);
         // }
-
-
+        
     }
 
     componentDidMount() {
@@ -134,7 +137,7 @@ export default class FlatListExample extends Component {
         return (
             <ScrollView >
                 <Text >
-                    Data: {this.state.dataArray[0].value.name}
+                    Data: {this.state.count}
                 </Text>
                 <AnimatedFlatList
                     data={this.state.dataArray}

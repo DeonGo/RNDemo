@@ -1,8 +1,12 @@
 import React from 'react';
 import { View, Text, TextInput, Button } from 'react-native';
 
+import * as loginInteractor from '../interactor/LoginInteractor'
+import { connect } from 'react-redux';
 
-export default class LoginContainer extends React.Component {
+
+
+class LoginContainer extends React.Component {
 
     constructor(props) {
         super(props);
@@ -13,12 +17,22 @@ export default class LoginContainer extends React.Component {
             username: '',
             pwd: '',
         }
+
+        Math.min
     }
+
+    // componentWillUpdate(nextProps, nextState){
+    //     if(nextProps.isSccuess){
+    //         alert(nextProps.status);
+    //     }
+    // }
 
 
     render() {
+        // const { login } = this.props;
         return (
             <View>
+                <Text>status:{this.props.status} </Text>
                 <TextInput placeholder="Username" onChangeText={
                     (text) => this.setState({ username: text })
                 } />
@@ -27,22 +41,28 @@ export default class LoginContainer extends React.Component {
                     (text) => this.setState({ pwd: text })
                 } />
 
-                <Button title="Login" onPress={() => {
-                    this.setState({
-                        isLoading: true,
-                    })
-                    this.login();
-                }
-                } />
+                <Button title="Login" onPress={() => loginInteractor.login(this.state.username, this.state.pwd)} />
             </View>
         )
     }
 
-    login() {
-        alert("username:" + this.state.username + "  pwd:" + this.state.pwd);
-    }
+    // login() {
+    //     alert("username:" + this.state.username + "  pwd:" + this.state.pwd);
+    // }
 };
 
 
 
 // export default LoginContainer;
+
+export default connect(
+    (state) => ({
+        status: state.loginIn.status,
+        isSuccess: state.loginIn.isSuccess,
+        user: state.loginIn.user,
+    }),
+    (dispatch) => ({
+        login: (username, password) => dispatch(loginInteractor.login(username, password))
+    })
+
+)(LoginContainer)
