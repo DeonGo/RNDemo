@@ -19,15 +19,20 @@ class LoginContainer extends React.Component {
         }
     }
 
-    // componentWillUpdate(nextProps, nextState){
-    //     if(nextProps.isSccuess){
-    //         alert(nextProps.status);
-    //     }
-    // }
+    componentWillUpdate(nextProps, nextState){
+        // if(nextProps.isSuccess){
+        //     alert(nextProps.status);
+        // }
+    }
 
 
     render() {
+
         const { login } = this.props;
+
+        if(this.props.isSuccess){
+            alert(this.props.status);
+        }
         return (
             <View>
                 <Text>status:{this.props.status} </Text>

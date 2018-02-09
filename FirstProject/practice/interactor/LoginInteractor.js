@@ -8,7 +8,7 @@ import * as userStatus from '../constants/UserStatus'
 // }
 
 export function login(username, password) {
-    return (dispatch) => {
+    return dispatch => {
         dispatch(isLoading());
         let result = fetch('http://www.qq.com')
             .then((res) => {
