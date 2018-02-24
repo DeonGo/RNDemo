@@ -20,11 +20,15 @@ class LoginScreen extends React.Component {
         //     , 3000
         // )
         await this.init();
-        SplashPage.hide();
+
+        // SplashPage.hide();
     }
 
     init = async () => {
-
+        //    let response = await fetch('http://www.qq.com');
+        await setTimeout(() => {
+            SplashPage.hide();
+        }, 3000)
     }
 
     componentWillUnmount() {
@@ -38,7 +42,8 @@ class LoginScreen extends React.Component {
 
     render() {
         return (
-            <LoginContainer />
+            // <LoginContainer {...this.props}/>
+            <LoginContainer navigation ={this.props.navigation}/>
         )
     }
 };

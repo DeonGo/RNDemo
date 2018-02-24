@@ -1,7 +1,9 @@
 package com.firstproject;
 
+import android.os.Bundle;
 import com.facebook.react.ReactActivity;
 import org.devio.rn.splashscreen.SplashScreen;
+
 
 public class MainActivity extends ReactActivity {
 
@@ -11,7 +13,13 @@ public class MainActivity extends ReactActivity {
      */
     @Override
     protected String getMainComponentName() {
-        // SplashScreen.show(this);
         return "FirstProject";
+    }
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        SplashScreen.show(this);  
+        super.onCreate(savedInstanceState);
+             
     }
 }

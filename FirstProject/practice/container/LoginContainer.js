@@ -11,15 +11,12 @@ class LoginContainer extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            isLoading: false,
-            isSccuess: false,
-            userProps: '',
             username: '',
             pwd: '',
         }
     }
 
-    componentWillUpdate(nextProps, nextState){
+    componentWillUpdate(nextProps, nextState) {
         // if(nextProps.isSuccess){
         //     alert(nextProps.status);
         // }
@@ -27,10 +24,10 @@ class LoginContainer extends React.Component {
 
 
     render() {
-
+        const { navigate } = this.props.navigation;
         const { login } = this.props;
 
-        if(this.props.isSuccess){
+        if (this.props.isSuccess) {
             alert(this.props.status);
         }
         return (
@@ -45,6 +42,7 @@ class LoginContainer extends React.Component {
                 } />
 
                 <Button title="Login" onPress={() => login(this.state.username, this.state.pwd)} />
+                <Button title="Signup" onPress={() => navigate('Signup', { name: 'Signup' })} />
             </View>
         )
     }
