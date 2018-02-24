@@ -29,6 +29,7 @@ class LoginContainer extends React.Component {
 
         if (this.props.isSuccess) {
             alert(this.props.status);
+            navigate('LoggedIn');
         }
         return (
             <View>
@@ -57,11 +58,13 @@ class LoginContainer extends React.Component {
 // export default LoginContainer;
 
 export default connect(
-    (state) => ({
-        status: state.loginIn.status,
-        isSuccess: state.loginIn.isSuccess,
-        user: state.loginIn.user,
-    }),
+    // (props) => ({
+    //     // status: props.loginIn.status,
+    //     // isSuccess: props.loginIn.isSuccess,
+    //     // user: props.loginIn.user,
+    //     ...props.loginIn
+    // }),
+    (state) => (state.loginIn),
     (dispatch) => ({
         login: (name, pwd) => dispatch(loginInteractor.login(name, pwd))
     })
