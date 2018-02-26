@@ -3,6 +3,7 @@ import { View, Text, TextInput, Button } from 'react-native';
 
 import * as loginInteractor from '../interactor/LoginInteractor'
 import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux'
 
 
 
@@ -21,6 +22,10 @@ class LoginContainer extends React.Component {
         //     alert(nextProps.status);
         // }
     }
+
+  componentWillUnmount(){
+      this.props.ClearLoginStatus();
+  }
 
 
     render() {
@@ -65,8 +70,6 @@ export default connect(
     //     ...props.loginIn
     // }),
     (state) => (state.loginIn),
-    (dispatch) => ({
-        login: (name, pwd) => dispatch(loginInteractor.login(name, pwd))
-    })
+    (dispatch) => (bindActionCreators(loginInteractor, dispatch))
 
 )(LoginContainer)

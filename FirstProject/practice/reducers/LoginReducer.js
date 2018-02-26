@@ -33,6 +33,8 @@ export default function loginIn(state = initialState, action) {
                 user: action.user,
             }
             break;
+      case userStatus.CLEAR_LOGIN_STATUS:
+            return initialState
 
         default:
             console.log(state);

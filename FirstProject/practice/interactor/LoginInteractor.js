@@ -24,6 +24,10 @@ export function login(username, password) {
     }
 }
 
+export function ClearLoginStatus() {
+  return { type: userStatus.CLEAR_LOGIN_STATUS }
+}
+
 function isLoading() {
     return { type: userStatus.LOGIN_LOADING }
 }
