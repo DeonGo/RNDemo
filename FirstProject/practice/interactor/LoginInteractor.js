@@ -41,3 +41,9 @@ function loginError(isSuccess) {
     }
 }
 
+export function clearState() {
+    return {
+        type: userStatus.LOGIN_INITIAL_STATE,
+    }
+}
+

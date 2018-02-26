@@ -10,6 +10,11 @@ import RegNavigator from './navigator/RegistrationNavigator';
 const store = configureStore();
 
 export default class Root extends Component {
+
+  constructor(props) {
+    super(props);
+  }
+  
   render() {
     return (
       <Provider store={store}>

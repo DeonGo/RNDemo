@@ -1,8 +1,9 @@
 import React from 'react';
-import { View, Text, TextInput, Button } from 'react-native';
+import { View, Text, TextInput, Button, Alert } from 'react-native';
 
 import * as loginInteractor from '../interactor/LoginInteractor'
 import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux'
 
 
 
@@ -28,12 +29,14 @@ class LoginContainer extends React.Component {
         const { login } = this.props;
 
         if (this.props.isSuccess) {
-            alert(this.props.status);
-            navigate('LoggedIn');
+            // alert(this.props.status);
+            // navigate('LoggedIn');
+            // this.props.clearState();
+            Alert.alert('Success', 'login success', [{ text: "got it", onPress: this.navigateToDashboard.bind(this, navigate) }]);
         }
         return (
             <View>
-                <Text>status:{this.props.status} </Text>
+                <Text>status:{this.state.status} </Text>
                 <TextInput placeholder="Username" onChangeText={
                     (text) => this.setState({ username: text })
                 } />
@@ -48,10 +51,17 @@ class LoginContainer extends React.Component {
         )
     }
 
+    navigateToDashboard(navigate) {
+        navigate('LoggedIn');
+        this.props.clearState();
+    };
+
     // login() {
     //     alert("username:" + this.state.username + "  pwd:" + this.state.pwd);
     // }
 };
+
+
 
 
 
@@ -65,8 +75,9 @@ export default connect(
     //     ...props.loginIn
     // }),
     (state) => (state.loginIn),
-    (dispatch) => ({
-        login: (name, pwd) => dispatch(loginInteractor.login(name, pwd))
-    })
+    // (dispatch) => ({
+    //     login: (name, pwd) => dispatch(loginInteractor.login(name, pwd))
+    // })
+    dispatch => (bindActionCreators(loginInteractor, dispatch))
 
 )(LoginContainer)
