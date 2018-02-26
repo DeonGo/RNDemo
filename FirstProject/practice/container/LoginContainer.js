@@ -32,6 +32,10 @@ class LoginContainer extends React.Component {
             // alert(this.props.status);
             // navigate('LoggedIn');
             // this.props.clearState();
+
+            // no param,bind method.
+            //Alert.alert('Success', 'login success', [{ text: "got it", onPress: this.navigateToDashboard }]);
+
             Alert.alert('Success', 'login success', [{ text: "got it", onPress: this.navigateToDashboard.bind(this, navigate) }]);
         }
         return (
